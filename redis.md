@@ -81,7 +81,7 @@ Redis cluster
  
  * Impact de l'activation de la persistance fort
   
- * Tunning Système quasi obligatoir
+ * Tunning Système fortement recommandé
     # TODO a détailler
 
 ---
@@ -95,6 +95,46 @@ Redis cluster
  * On peut activer l'un ou l'autre, les deux ou rien
  
  * Plus de détail ici : https://redis.io/topics/persistence
+
+---
+
+# Exploitation
+
+ * redis_cli: Outils command line de redis
+    
+    + Autocompletion et hostorisation
+    
+    + Interactif ou scripté
+ 
+ * Logs redis : Emplacement paramétrable, pas mal d'information notament sur le parametrage system manquant
+ 
+ * Command utile
+    
+    + PING : réponse PONG
+    
+    + ...
+
+---
+
+# Monitoring
+
+REDIS INFO ...
+
+---
+
+# Redis sentinel
+
+---
+
+# Redis Cluster
+
+---
+
+# Industrialisation VSCT
+
+---
+
+---
 
 ---
 
