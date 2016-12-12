@@ -72,7 +72,7 @@ TODO
 
  * RDB(Redis Database File) mode : point-in-time snapshot
  
- * AOF(Append Only File) mode : Chaque opération d'écriture est logguées
+ * AOF(Append Only File) mode : Chaque opération d'écriture est logguée
  
  * On peut activer l'un ou l'autre, les deux ou rien
  
@@ -168,13 +168,35 @@ class: center, middle
  * Attention : Redis cluster utilise un port tcp supplémentaire pour la communication inter node. 
  Ce port n'est pas configurable (à moins de recompiler redis) et vaut le port redis standard + 10000
  
-//TODO Schema d'un cluster
+
+---
+# Redis Cluster
+
+![Redis cluster](cluster_base.svg)
 
 ---
 
 # Redis Cluster : La résilience
 
+ * Redis ne gère pas le partitionnement réseau. Il faut toujours une majorité de master UP,
+  ainsi qu'un slave par master down sinon la totalité du cluster sera DOWN.
+ 
+ * Si nous avons la majorité, lorsqu'un noeud master est DOWN, il sera automatiquement remplacé par un de ses réplicas.
+ L'operation prend la valeur du paramètre `cluster-node-timeout` plus quelques secondes.
+
+ * Si un master n'a plus de slave, redis cluster va automatiquement lui en assigner un si des master dispose de plus d'un slave
+
+ * Attention : Si toutes les données sont en mémoire et qu'un master est DOWN,
+ mais revient (ex : supervision monit) avant un réelection, les données de ce noeud seront perdu.
+
 ---
+
+# Redis Cluster : La résilience - Perte d'un noeud master
+
+
+
+---
+
 
 # Redis Cluster : redis_trib.rb
 
