@@ -6,23 +6,7 @@ class: center, middle
 
 # Agenda
 
-Redis
-
-Key feature
-
-Other feature
-
-Deep dive : Monothread
-Deep dive : Memory
-Deep dive : Persistance
-
-Redis cli
-
-Latency doctor
-
-Redis sentinelles
-
-Redis cluster
+TODO
 
 ---
 
@@ -30,7 +14,7 @@ Redis cluster
  
  * Key/Value Store
  
- * Toutes les données sont stoquées en mémoire
+ * Toutes les données sont stoquées `in memory`
  
  * Toutes les clées peuvent avoir (ou non) une date d'expiration (TTL)
  
@@ -51,7 +35,7 @@ Redis cluster
  
  * Un cache LRU out-of-the-box
  
- * Une fonctionnalitées de Souscription / Publication (Broker de message lite)
+ * Une fonctionnalitées de Souscription / Publication (Broker de message léger)
  
  * De la réplication (Redis Sentinel)
 
@@ -78,20 +62,17 @@ Redis cluster
 
  * Mono threadé
  
- * Tout doit etre in-memmory
+ * Tout doit etre in-memmory (Pas de swapping)
  
  * Impact de l'activation de la persistance fort
-  
- * Tunning Système fortement recommandé
-    # TODO a détailler
 
 ---
 
 # Focus sur la persistance
 
- * RDB mode : point-in-time snapshot
+ * RDB(Redis Database File) mode : point-in-time snapshot
  
- * AOF mode : Chaque opération d'écriture est logguées
+ * AOF(Append Only File) mode : Chaque opération d'écriture est logguées
  
  * On peut activer l'un ou l'autre, les deux ou rien
  
@@ -100,15 +81,37 @@ Redis cluster
 ---
 
 # Exploitation
+ 
+ * Logs redis : Emplacement paramétrable, pas mal d'information notament sur le parametrage system manquant
 
+```
+# WARNING: The TCP backlog setting of 511 cannot be enforced because 
+/proc/sys/net/core/somaxconn is set to the lower value of 128.
+
+# Server started, Redis version 3.2.6
+
+# WARNING overcommit_memory is set to 0! Save may fail under low memory condition. 
+To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot.
+
+# WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. 
+This will create latency and memory usage issues with Redis. 
+To fix this issue run the command 
+'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, 
+and add it to your /etc/rc.local in order to retain the setting after a reboot. 
+Redis must be restarted after THP is disabled.
+
+* The server is now ready to accept connections on port 6379
+```
+---
+
+# Exploitation
+ 
  * redis_cli: Outils command line de redis
     
     + Autocomplétion et hostorisation
     
     + Interactif ou scripté
- 
- * Logs redis : Emplacement paramétrable, pas mal d'information notament sur le parametrage system manquant
- 
+    
  * Commandes utiles
     
     + PING : réponse PONG
@@ -136,28 +139,42 @@ La commande `INFO` fourni énormement de métriques :
  * Tous le détail ici : https://redis.io/commands/info
 
 
-En mode cluster, il y à également la commande : `CLUSTER INFO` et `CLUSTER NODES`, qui donne des information sur létat d'un cluster Redis
-Détail ici : https://redis.io/commands#cluster
+En mode cluster, il y a également les commandes : 
+ 
+ * `CLUSTER INFO` 
 
+ * `CLUSTER NODES`
+ 
+ * Détail ici : https://redis.io/commands#cluster
+
+
+---
+
+class: center, middle
+# DEMO
+## Redis standalone
+## Redis cli
 
 ---
 
 # Redis Cluster
 
- * Complètement different du mode HA avec redis sentinel
+ * Complètement différent du mode HA avec redis sentinel
  
  * Permet de Sharder les données entre differents noeuds du cluster (Pour de la performances et du scaling).
  
  * Permet également d'être résilient à un certain nombres de pannes
  
- * Attention : Redis cluster utilise un port tcp supplémentaire pour la communication inter node.
-               Ce port n'est pas configurable (a moins de recompiler redis) et vaut le port redis standard + 10000
+ * Attention : Redis cluster utilise un port tcp supplémentaire pour la communication inter node. 
+ Ce port n'est pas configurable (à moins de recompiler redis) et vaut le port redis standard + 10000
  
 //TODO Schema d'un cluster
 
 ---
 
 # Redis Cluster : La résilience
+
+---
 
 # Redis Cluster : redis_trib.rb
 
@@ -198,6 +215,8 @@ Détail ici : https://redis.io/commands#cluster
 
 # Industrialisation VSCT : YAML
 
+* Mode standalone, cluster ou sentinnel, gestion du stockage.
+
  ```
 REDIS:
   - NAME: PAO
@@ -235,6 +254,37 @@ REDIS:
  ```
  
  * https://prep.appmetrics.vsct.fr/grafana/dashboard/db/tdc-pao-redis
+
+---
+
+# Industrialisation VSCT : Détail d'une installation
+
+```
+|-- BOOT
+|-- PAO
+|   |-- BOOT
+|   |-- BOOT_PAOAROH11RED
+|   |-- SHUT
+|   |-- SHUT_PAOAROH11RED
+|   |-- config
+|   |   `-- redis_50000.conf
+|   |-- data                                 # Données du cluster + persistance
+|   |   `-- PAOAROH11RED
+|   |-- logs                                 # Emplacements des logs
+|   |-- rundeck_install
+|   `-- scripts
+|       |-- cluster_shard_exploit            # Utilitaire redis pour les clusters
+|       |   |-- add_master_with_slaves.sh   
+|       |   |-- init_cluster.sh             
+|       |   |-- rebalance_cluster.sh        
+|       |   `-- redis_trib_wrapper.sh       
+|       `-- run50000.sh
+|-- SHUT
+`-- install_gems.sh
+
+```
+class: center, middle
+ # DEMO
 
 ---
 
