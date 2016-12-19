@@ -3,6 +3,7 @@ ssh arola-bck
 sudo su  - redpaoh1
 alias redis-cli='/export/product/redis/3.2.1/bin/redis-cli'
 cd PAO
+sed -i 's/cluster-enabled yes/cluster-enabled no/' /appl/redpaoh1/PAO/config/redis_50000.conf
 ./SHUT && ./BOOT
 vi logs/redis_50000.log
 
@@ -15,3 +16,5 @@ $ keys *
 $ info
 $ info cpu
 
+sed -i 's/cluster-enabled no/cluster-enabled yes/' /appl/redpaoh1/PAO/config/redis_50000.conf
+./SHUT && ./BOOT

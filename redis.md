@@ -23,7 +23,7 @@ TODO
  * Léger
  
 
-![Redis logo](redis_logo.png)
+![Redis logo](images/redis_logo.png)
 
 ---
 
@@ -54,7 +54,7 @@ TODO
  
  * Développé en C ANSI
  
- * Aucune dépendences externes
+ * Aucunes dépendences externes
 
 ---
 
@@ -82,7 +82,7 @@ TODO
 
 # Exploitation
  
- * Logs redis : Emplacement paramétrable, pas mal d'information notament sur le parametrage system manquant
+ * Logs redis : Emplacement paramétrable, pas mal d'information notament sur le parametrage système manquant
 
 ```
 # WARNING: The TCP backlog setting of 511 cannot be enforced because 
@@ -108,9 +108,9 @@ Redis must be restarted after THP is disabled.
  
  * redis_cli: Outils command line de redis
     
-    + Autocomplétion et hostorisation
+    + Autocomplétion et historisation des commandes
     
-    + Interactif ou scripté
+    + Mode interactif ou scripté
     
  * Commandes utiles
     
@@ -128,7 +128,7 @@ Redis must be restarted after THP is disabled.
 
 La commande `INFO` fourni énormement de métriques : 
 
- * Généralitées redis (version, mode, uptime ...)
+ * Généralitées sur redis (version, mode, uptime ...)
  
  * Utilisation CPU et mémoire
  
@@ -161,7 +161,7 @@ class: center, middle
 
  * Complètement différent du mode HA avec redis sentinel
  
- * Permet de Sharder les données entre differents noeuds du cluster (Pour de la performances et du scaling).
+ * Permet de Sharder les données entre les differents noeuds du cluster (Pour la performance et du scalabilité)
  
  * Permet également d'être résilient à un certain nombres de pannes
  
@@ -172,31 +172,54 @@ class: center, middle
 ---
 # Redis Cluster
 
-![Redis cluster](cluster_base.svg)
+![Redis cluster](images/cluster_base.svg)
 
 ---
 
 # Redis Cluster : La résilience
 
  * Redis ne gère pas le partitionnement réseau. Il faut toujours une majorité de master UP,
-  ainsi qu'un slave par master down sinon la totalité du cluster sera DOWN.
+  ainsi qu'un slave par master DOWN sinon la totalité du cluster sera DOWN.
  
  * Si nous avons la majorité, lorsqu'un noeud master est DOWN, il sera automatiquement remplacé par un de ses réplicas.
  L'operation prend la valeur du paramètre `cluster-node-timeout` plus quelques secondes.
 
- * Si un master n'a plus de slave, redis cluster va automatiquement lui en assigner un si des master dispose de plus d'un slave
+ * Si un master n'a plus de slave, redis cluster va automatiquement lui en assigner un si des masters disposent de plus d'un slave
 
  * Attention : Si toutes les données sont en mémoire et qu'un master est DOWN,
- mais revient (ex : supervision monit) avant un réelection, les données de ce noeud seront perdu.
+ mais revient (ex : supervision monit) avant une réelection, les données de ce noeud seront perdus.
 
 ---
 
-# Redis Cluster : La résilience - Perte d'un noeud master
+# Redis Cluster : La résilience - Perte d'un master
 
-
+![Redis one master down 1](images/redis_perte_master_1.svg)
 
 ---
 
+# Redis Cluster : La résilience - Perte d'un master
+
+![Redis one master down 2](images/redis_perte_master_2.svg)
+
+---
+
+# Redis Cluster : La résilience - Perte de tous les slaves d'un master
+
+![Redis all slaves down 1](images/redis_perte_all_slaves_1.svg)
+
+---
+
+# Redis Cluster : La résilience - Perte de tous les slaves d'un master
+
+![Redis all slaves down 2](images/redis_perte_all_slaves_2.svg)
+
+---
+
+# Redis Cluster : La résilience - Perte de la majorité des masters
+
+![Redis majority of master down](images/redis_2_master.svg)
+
+---
 
 # Redis Cluster : redis_trib.rb
 
