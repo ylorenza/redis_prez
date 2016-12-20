@@ -231,6 +231,8 @@ class: center, middle
     
     + resharding
     
+    + rebalancing
+    
     + etc. (Voir redis_trib.rb help)
 
 ---
@@ -260,7 +262,7 @@ class: center, middle
 
 # Industrialisation VSCT : YAML
 
-* Mode standalone, cluster ou sentinnel, gestion du stockage.
+* Mode standalone, cluster ou sentinel, gestion du stockage.
 
  ```
 REDIS:
@@ -287,7 +289,7 @@ REDIS:
 
 # Industrialisation VSCT : Collectd
 
- * Plugin collectd remote repris en interne, basé sur les commandes `INFO` et `CLUSTER`
+ * Plugin collectd rpm repris en interne, basé sur les commandes `INFO` et `CLUSTER INFO`
  
  ```
        PAO-PREP1:
@@ -326,15 +328,18 @@ REDIS:
 |       `-- run50000.sh
 |-- SHUT
 `-- install_gems.sh
-
 ```
+
+---
+
 class: center, middle
- # DEMO
+# DEMO
+## Industrialisation vsct
+## Redis cluster
+## Redis trib
 
 ---
 
 # Sources
  
 * https://redis.io
-
----
