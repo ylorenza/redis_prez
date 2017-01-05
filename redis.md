@@ -6,7 +6,19 @@ class: center, middle
 
 # Agenda
 
-TODO
+* C'est quoi Redis
+
+* Exploitation
+
+* Monitoring
+
+* DEMO 1
+
+* Redis Cluster
+
+* Industrialisation VSCT
+
+* DEMO 2
 
 ---
 
