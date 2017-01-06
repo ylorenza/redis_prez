@@ -26,7 +26,7 @@ class: center, middle
  
  * Key/Value Store
  
- * Toutes les données sont stoquées `in memory`
+ * Toutes les données sont stockées `in memory`
  
  * Toutes les clées peuvent avoir (ou non) une date d'expiration (TTL)
  
@@ -47,7 +47,7 @@ class: center, middle
  
  * Un cache LRU out-of-the-box
  
- * Une fonctionnalitées de Souscription / Publication (Broker de message léger)
+ * Une fonctionnalité de Souscription / Publication (Broker de message léger)
  
  * De la réplication (Redis Sentinel)
 
@@ -62,11 +62,11 @@ class: center, middle
 
  * Open sources (BSD licensed)
  
- * Une documentation très fourni (https://redis.io/documentation)
+ * Une documentation très fournie (https://redis.io/documentation)
  
  * Développé en C ANSI
  
- * Aucunes dépendences externes
+ * Aucunes dépendances externes
 
 ---
 
@@ -74,7 +74,7 @@ class: center, middle
 
  * Mono threadé
  
- * Tout doit etre in-memmory (Pas de swapping)
+ * Tout doit être in-memory (Pas de swapping)
  
  * Impact de l'activation de la persistance fort
 
@@ -88,13 +88,13 @@ class: center, middle
  
  * On peut activer l'un ou l'autre, les deux ou rien
  
- * Plus de détail ici : https://redis.io/topics/persistence
+ * Plus de détails ici : https://redis.io/topics/persistence
 
 ---
 
 # Exploitation
  
- * Logs redis : Emplacement paramétrable, pas mal d'information notament sur le parametrage système manquant
+ * Logs redis : Emplacement paramétrable, pas mal d'informations notamment sur le paramétrage système manquant
 
 ```
 # WARNING: The TCP backlog setting of 511 cannot be enforced because 
@@ -138,7 +138,7 @@ Redis must be restarted after THP is disabled.
 
 # Monitoring
 
-La commande `INFO` fourni énormement de métriques : 
+La commande `INFO` fournit énormement de métriques : 
 
  * Généralitées sur redis (version, mode, uptime ...)
  
@@ -198,8 +198,8 @@ class: center, middle
 
  * Si un master n'a plus de slave, redis cluster va automatiquement lui en assigner un si des masters disposent de plus d'un slave
 
- * Attention : Si toutes les données sont en mémoire et qu'un master est DOWN,
- mais revient (ex : supervision monit) avant une réelection, les données de ce noeud seront perdus.
+ * Attention : Si la persistance est désactivée et qu'un master est DOWN,
+ mais revient (ex : supervision monit) avant une réélection, les données de ce noeud seront perdues.
 
 ---
 
