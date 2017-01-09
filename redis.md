@@ -32,7 +32,7 @@ class: center, middle
  
  * Rapide (sur arola 80000 get/s et 100000 set/s)
  
- * Léger
+ * Léger ( Un redis vide occupe 1MB de mémoire)
  
 
 ![Redis logo](images/redis_logo.png)
@@ -81,7 +81,7 @@ class: center, middle
 
 # Focus sur la persistance
 
- * RDB(Redis Database File) mode : point-in-time snapshot
+ * RDB(Redis Database File) mode : snapshot régulier
  
  * AOF(Append Only File) mode : Chaque opération d'écriture est logguée
  
@@ -133,6 +133,8 @@ Redis must be restarted after THP is disabled.
     
     + Toutes les commandes ici : https://redis.io/commands
 
+ * Astuce : un simple nc ou telnet peut faire office de redis_cli
+ 
 ---
 
 # Monitoring
@@ -189,8 +191,8 @@ class: center, middle
 
 # Redis Cluster : La résilience
 
- * Redis ne gère pas le partitionnement réseau. Il faut toujours une majorité de master UP,
-  ainsi qu'un slave par master DOWN sinon la totalité du cluster sera DOWN.
+ * Il faut toujours une majorité de master UP, ainsi qu'un slave par master DOWN sinon la totalité du cluster sera DOWN.
+ Ceci afin d'éviter un "Split brain"
  
  * Si nous avons la majorité, lorsqu'un noeud master est DOWN, il sera automatiquement remplacé par un de ses réplicas.
  L'operation prend la valeur du paramètre `cluster-node-timeout` plus quelques secondes.
