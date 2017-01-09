@@ -30,7 +30,7 @@ class: center, middle
  
  * Toutes les clées peuvent avoir (ou non) une date d'expiration (TTL)
  
- * Rapide
+ * Rapide (sur arola 80000 get/s et 100000 set/s)
  
  * Léger
  
