@@ -53,14 +53,13 @@ class: center, middle
 
  * Du Sharding (Redis cluster)
  
- * Très rapide
- 
- 
 ---
 
 # Et pour finir (Sur l'intro)
 
  * Open sources (BSD licensed)
+ 
+ * Code très claire
  
  * Une documentation très fournie (https://redis.io/documentation)
  
