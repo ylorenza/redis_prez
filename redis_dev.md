@@ -6,9 +6,9 @@ class: center, middle
 
 # Agenda
 
-* C'est quoi Redis
+* C'est quoi Redis ?
 
-* Les data types de Redis
+* Redis data types and other cool feature
 
 * Redis Cluster
 
@@ -88,7 +88,7 @@ class: center, middle
  * Plus de détails ici : https://redis.io/topics/persistence
 
 ---
-# Les Datatypes Redis
+# Redis data types and other cool feature
 
 TODO
 
@@ -144,7 +144,7 @@ En mode cluster, il y a également les commandes :
 
  * Complètement différent du mode HA avec redis sentinel
  
- * Permet de Sharder les données entre les differents noeuds du cluster (Pour la performance et du scalabilité)
+ * Permet de partitionner (sharder) les données entre les differents noeuds du cluster afin de pouvoir augmenter la performance en augmentant le nombre de noeud
  
  * Permet également d'être résilient à un certain nombres de pannes
  
@@ -159,15 +159,31 @@ En mode cluster, il y a également les commandes :
 
 ---
 
+# Redis Cluster : redis_trib.rb
+
+ * Script ruby qui permet de wrapper les commandes redis cluster pour l'exploitation
+    
+    + status
+    
+    + création de cluster
+    
+    + resharding
+    
+    + rebalancing
+    
+    + etc. (Voir redis_trib.rb help)
+    
+---
+
 # Redis Cluster : La résilience
+
+ * Lorsqu'un noeud master est DOWN, il sera automatiquement remplacé par un de ses réplicas.
+ L'operation prend la valeur du paramètre `cluster-node-timeout` plus quelques secondes.
+
+ * Si un master n'a plus de slave, le cluster va automatiquement lui en assigner un si des masters disposent de plus d'un slave
 
  * Il faut toujours une majorité de master UP, ainsi qu'un slave par master DOWN sinon la totalité du cluster sera DOWN.
  Ceci afin d'éviter un "Split brain"
- 
- * Si nous avons la majorité, lorsqu'un noeud master est DOWN, il sera automatiquement remplacé par un de ses réplicas.
- L'operation prend la valeur du paramètre `cluster-node-timeout` plus quelques secondes.
-
- * Si un master n'a plus de slave, redis cluster va automatiquement lui en assigner un si des masters disposent de plus d'un slave
 
  * Attention : Si la persistance est désactivée et qu'un master est DOWN,
  mais revient (ex : supervision monit) avant une réélection, les données de ce noeud seront perdues.
@@ -202,18 +218,6 @@ En mode cluster, il y a également les commandes :
 
 ![Redis majority of master down](images/redis_2_master.svg)
 
----
+# Redis Cluster : Data types and other cool feature
 
-# Redis Cluster : redis_trib.rb
-
- * Script ruby qui permet de wrapper les commandes redis cluster pour l'exploitation
-    
-    + status
-    
-    + création de cluster
-    
-    + resharding
-    
-    + rebalancing
-    
-    + etc. (Voir redis_trib.rb help)
+Tout est compatible avec le mode cluster :)
