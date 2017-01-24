@@ -217,14 +217,6 @@ Un plugin collectd est disponible dans notre Infra
  * Lorsqu'un noeud master est DOWN, il sera automatiquement remplacé par un de ses réplicas.
  L'operation prend la valeur du paramètre `cluster-node-timeout` plus quelques secondes.
 
- * Si un master n'a plus de slave, le cluster va automatiquement lui en assigner un si des masters disposent de plus d'un slave
-
- * Il faut toujours une majorité de master UP, ainsi qu'un slave par master DOWN sinon la totalité du cluster sera DOWN.
- Ceci afin d'éviter un "Split brain"
-
- * Attention : Si la persistance est désactivée et qu'un master est DOWN,
- mais revient (ex : supervision monit) avant une réélection, les données de ce noeud seront perdues.
-
 ---
 
 # Redis Cluster : La résilience - Perte d'un master
@@ -236,6 +228,15 @@ Un plugin collectd est disponible dans notre Infra
 # Redis Cluster : La résilience - Perte d'un master
 
 ![Redis one master down 2](images/redis_perte_master_2.svg)
+
+---
+
+# Redis Cluster : La résilience
+
+ * Lorsqu'un noeud master est DOWN, il sera automatiquement remplacé par un de ses réplicas.
+ L'operation prend la valeur du paramètre `cluster-node-timeout` plus quelques secondes.
+
+ * Si un master n'a plus de slave, le cluster va automatiquement lui en assigner un si des masters disposent de plus d'un slave
 
 ---
 
@@ -251,9 +252,36 @@ Un plugin collectd est disponible dans notre Infra
 
 ---
 
+# Redis Cluster : La résilience
+
+ * Lorsqu'un noeud master est DOWN, il sera automatiquement remplacé par un de ses réplicas.
+ L'operation prend la valeur du paramètre `cluster-node-timeout` plus quelques secondes.
+
+ * Si un master n'a plus de slave, le cluster va automatiquement lui en assigner un si des masters disposent de plus d'un slave
+
+ * Il faut toujours une majorité de master UP, ainsi qu'un slave par master DOWN sinon la totalité du cluster sera DOWN.
+ Ceci afin d'éviter un "Split brain"
+
+---
+
 # Redis Cluster : La résilience - Perte de la majorité des masters
 
 ![Redis majority of master down](images/redis_2_master.svg)
+
+---
+
+# Redis Cluster : La résilience
+
+ * Lorsqu'un noeud master est DOWN, il sera automatiquement remplacé par un de ses réplicas.
+ L'operation prend la valeur du paramètre `cluster-node-timeout` plus quelques secondes.
+
+ * Si un master n'a plus de slave, le cluster va automatiquement lui en assigner un si des masters disposent de plus d'un slave
+
+ * Il faut toujours une majorité de master UP, ainsi qu'un slave par master DOWN sinon la totalité du cluster sera DOWN.
+ Ceci afin d'éviter un "Split brain"
+
+ * Attention : Si la persistance est désactivée et qu'un master est DOWN,
+ mais revient (ex : supervision monit) avant une réélection, les données de ce noeud seront perdues.
 
 ---
 
@@ -269,4 +297,4 @@ Tout est compatible avec le mode cluster :)
  
  * Changement de paradigme : On ne connais pas a l'avance le role de chaque machine
  
- * Attention au client :  Bien tester les cas au limite
+ * Attention au client :  Bien tester les cas aux limites
