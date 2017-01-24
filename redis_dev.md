@@ -297,6 +297,6 @@ Tout est compatible avec le mode cluster :)
 
  * Gros impact de la configuration redis sur la résilience du cluster
  
- * Changement de paradigme : On ne connais pas a l'avance le role de chaque machine
+ * Changement de paradigme : On ne connait pas à l'avance le rôle de chaques machines
  
  * Attention au client :  Bien tester les cas aux limites
