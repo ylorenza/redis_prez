@@ -10,11 +10,13 @@ class: center, middle
 
 * Types complexes et autre feature "Cool"
 
-* Redis Cluster
-
 * Exploitation
 
 * Monitoring
+
+* Redis Cluster
+
+* Mini Rex : Pao Redis
 
 ---
 
