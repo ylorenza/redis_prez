@@ -255,6 +255,18 @@ Un plugin collectd est disponible dans notre Infra
 
 ![Redis majority of master down](images/redis_2_master.svg)
 
+---
+
 # Redis Cluster : Data types and other cool feature
 
 Tout est compatible avec le mode cluster :)
+
+---
+
+# Mini Rex PAO Redis cluster
+
+ * Gros impact de la configuration redis sur la résilience du cluster
+ 
+ * Changement de paradigme : On ne connais pas a l'avance le role de chaque machine
+ 
+ * Attention au client :  Bien tester les cas au limite
