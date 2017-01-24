@@ -172,7 +172,7 @@ En mode cluster, il y a également les commandes :
  
  * Détail ici : https://redis.io/commands#cluster
  
- Un plugin collectd est disponible dans notre Infra 
+Un plugin collectd est disponible dans notre Infra 
 
 ---
 
