@@ -8,7 +8,7 @@ class: center, middle
 
 * C'est quoi Redis ?
 
-* Redis data types and other cool feature
+* Types complexes et autre feature "Cool"
 
 * Redis Cluster
 
@@ -26,7 +26,7 @@ class: center, middle
  
  * Toutes les clées peuvent avoir (ou non) une date d'expiration (TTL)
  
- * C'est Rapide (sur une vm vsct avec 2 coeur et 12go de ram 80000 get/s et 100000 set/s)
+ * C'est Rapide (sur une vm vsct avec 2 coeur et 8go de ram 80000 get/s et 100000 set/s)
  
  * C'est Léger ( Un redis vide occupe 1MB de mémoire)
  
@@ -72,8 +72,6 @@ class: center, middle
  * Tout doit être in-memory (Pas de swapping)
  
  * Impact de l'activation de la persistance fort
- 
- TODO plus de chiffre ici
 
 ---
 
@@ -88,9 +86,28 @@ class: center, middle
  * Plus de détails ici : https://redis.io/topics/persistence
 
 ---
-# Redis data types and other cool feature
+# Types complexes et autre feature "Cool"
 
-TODO
+## Lists
+
+```
+LPUSH  mylist a         # mylist is a
+LPUSH  mylist b         # mylist is a b
+RPUSH  mylist c         # mylist is c a b 
+LRANGE mylist 0 -1      # Get all the list 
+```
+
+ * Possibilité de limiter la taille de la liste (LTRIM mylist startkey stopkey)
+ 
+ * De l'utiliser comme un tas bloquant ou non (RPOP ou BRPOP)
+ 
+## Sets
+
+```
+SADD myset "val1"       # myset is val1
+SADD myset "val2"       # myset is val1 val2
+SADD myset "val1"       # myset is val1 val2
+```
 
 ---
 
