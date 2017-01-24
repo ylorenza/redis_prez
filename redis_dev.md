@@ -86,6 +86,7 @@ class: center, middle
  * Plus de détails ici : https://redis.io/topics/persistence
 
 ---
+
 # Types complexes et autre feature "Cool"
 
 ## Lists
@@ -107,6 +108,23 @@ LRANGE mylist 0 -1      # Get all the list
 SADD myset "val1"       # myset is val1
 SADD myset "val2"       # myset is val1 val2
 SADD myset "val1"       # myset is val1 val2
+```
+---
+
+# Types complexes et autre feature "Cool"
+
+## Pub / sub
+
+```
+PUBLISH     mychanel message
+SUSCRIBE    mychanel
+UNSUSCRIBE  ychanel
+```
+
+Possibilité d'avoir du pattern matching sur les channel
+
+```
+PSUBSCRIBE news.*
 ```
 
 ---
