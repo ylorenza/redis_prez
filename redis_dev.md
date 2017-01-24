@@ -171,7 +171,8 @@ En mode cluster, il y a également les commandes :
  * `CLUSTER NODES`
  
  * Détail ici : https://redis.io/commands#cluster
-
+ 
+ Un plugin collectd est disponible dans notre Infra 
 
 ---
 
