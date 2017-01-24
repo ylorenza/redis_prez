@@ -87,7 +87,7 @@ class: center, middle
 
 ---
 
-# Types complexes et autre feature "Cool"
+# Types complexes et autre feature "cool"
 
 ## Lists
 
@@ -111,7 +111,7 @@ SADD myset "val1"       # myset is val1 val2
 ```
 ---
 
-# Types complexes et autre feature "Cool"
+# Types complexes et autre feature "cool"
 
 ## Pub / sub
 
